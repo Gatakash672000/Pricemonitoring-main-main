@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Price Monitoring</title>
+  <link href="static/css/style.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+  <div class="header-logo-logout">
+    <img src="static/images/logo.jpeg" alt="Logo" class="logo-img" />
+    <div class="search-input">
+      <input name="search-product" type="text" id="search-product" placeholder="Product ID" />
+      <button class="searchbutton" type="button" onclick="searchProduct()">Search</button>
+  </div>
+  <button class="logout" type="button" onclick="logout()"> Logout </button>
+  </div>
+
+  <nav>
+  <div class="search">
+    <p class="p-1"> <a href="index.html">Home</a> / Price Monitoring </p>
+    <div class="search-bar">
+      
+    </div>
+  </nav>
+  </div>
+     <!-- Pagination -->
+     <div class="pagination">
+      {% if page > 1 %}
+          <a href="{{ url_for('monitoring', page=page-1) }}" id="prevPage" style="text-decoration: none;">←</a>
+      {% endif %}
+      
+      {% for p in range(1, end_page + 1) %}
+          <a href="{{ url_for('monitoring', page=p) }}" class="page {% if p == page %}active{% endif %}" style="text-decoration: none;">{{ p }}</a>
+      {% endfor %}
+      
+      
+      {% if page < total_pages %}
+          <a href="{{ url_for('monitoring', page=page+1) }}" id="nextPage" style="text-decoration: none;">→</a>
+      {% endif%}
+     </div>
+     
+      <main>
+        <h1>Price Monitoring System</h1>
+        {% for product in products %}
+        <div class="product">
+          <div class="product-img">
+            <img src="static/images/{{product.image}}" alt="product-image" />
+        </div>
+        <div class="product-info">
+          <h3> {{product.name}}</h3>
+          <h2> {{product.id}} <span onclick ="reloadPrice()" class="glyphicon glyphicon-refresh reload"></span> </h2>
+          <div class="price-list">
+            <div class="ebay">
+              <p>Ebay Price</p>
+              <p id="ebay-price"></p>
+          </div>
+            <div class="amazon">
+                <p>Amazon Price</p>
+                <p id="amazon-price"></p>
+              </div>
+            <div class="cityblue">
+                <p>CityBlue Price</p>
+                <p id="cityblue-price"></p>
+              </div>
+            <div class="update">
+                <p> Updated CityBlue Price (in $) </p>
+                <input type="hidden" class="product-id" value="{{ product.id }}">
+                <input type="text" class="new-price"  placeholder="Enter the new price" />
+            <button class="updatebutton" type="button" onclick="updatePrice(this)"> Update </button>
+            </div>
+            
+        </div>
+        </div>
+        </div>
+        {% endfor %}
+
+
+      </main>
+      <script>
+        function searchProduct() {
+            let searchTerm = document.getElementById('search-product').value.trim().toLowerCase();
+            let products = document.querySelectorAll('.product');
+        
+            products.forEach(product => {
+              let productName = product.querySelector('.product-info h3').textContent.toLowerCase();
+              let productId = product.querySelector('.product-info h2').textContent.toLowerCase();
+        
+              if (productName.includes(searchTerm) || productId.includes(searchTerm)) {
+                product.style.display = 'block';
+              } else {
+                product.style.display = 'none'; 
+              }
+            });
+          }
+
+          function logout(){
+            window.location.href = "/logout";
+          }
+
+          /* Search JS end*/
+          function searchProducts() {
+              let searchQuery = document.getElementById('search-input').value;
+              fetch('/search', {
+                  method: 'POST',
+                  body: JSON.stringify({ query: searchQuery }),
+                  headers: {
+                      'Content-Type': 'application/json'
+                  }
+              })
+              .then(response => response.json())
+              .then(data => {
+                  let searchResults = document.getElementById('search-results');
+                  searchResults.innerHTML = '';
+                  data.forEach(product => {
+                      let li = document.createElement('li');
+                      li.textContent = product.name;
+                      searchResults.appendChild(li);
+                  });
+              })
+              .catch(error => {
+                  console.error('Error searching products:', error);
+              });
+          }
+          /*  Add to cart functionality */
+          function fetchPrices() {
+            $.getJSON('/prices', function(data) {
+                // Update the price list on the webpage
+                $('#price-list').empty();
+                $.each(data, function(symbol, price) {
+                    $('#price-list').append('<li>' + symbol + ': $' + price + '</li>');
+                });
+            });
+        }
+
+        // Fetch prices initially
+        fetchPrices();
+
+        // Fetch prices every 5 seconds (for example)
+        setInterval(fetchPrices, 5000);
+      </script>
+</body>
+
+</html>

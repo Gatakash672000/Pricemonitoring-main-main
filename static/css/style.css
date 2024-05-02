@@ -1,0 +1,260 @@
+html, body {
+  height: 100%;
+  width: 100%;
+   overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Your existing CSS continues below */
+.header-logo-logout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1%;
+}
+
+header img {
+  height: 5em;
+  width: 20em;
+}
+
+nav {
+  background-color: #61636d;
+  height: 4.5vh;
+  width: 100vw;
+}
+.p-1 {
+  color: white;
+  margin-top: -1%;
+ padding-top: 0.5%;
+ margin-left: 10px;
+}
+
+/* main {
+  background-color: #eff0f1;
+  /* height: 80vh; */
+  /* width: 100vw;
+  padding: 1em; */
+/* } */ 
+.logout {
+  height: 2vw;
+  width: 4vw;
+  background: #ccd5e1;
+  font-size: 0.9em;
+  margin-right: 0vw;
+  margin-left: -8%;
+}
+.search-input {
+  display: flex;
+  gap: 1em;
+  margin-left: 44%;
+}
+
+#search-product {
+  height: 2em;
+  width: 12vw;
+}
+
+.product {
+  display: inline;
+  gap: 3em;
+  margin-top: 2em;
+}
+
+.product-img img {
+  height: 25vh;
+  width: 13vw;
+  transition: transform 0.3s ease-in-out;
+}
+.product-img img:hover {
+  transform: scale(1.05);
+}
+
+.price-list {
+  display: flex;
+  gap: 3em;
+}
+
+.reload {
+  color: blue;
+  font-size: 0.5em;
+}
+
+.reload.reload:hover {
+  transform: scale(1.05);
+}
+
+.searchbutton {
+  height: 2em;
+  width: 6em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.searchbutton:hover {
+  background-color: #0056b3;
+}
+
+.logoinimg {
+  height: 5em;
+  width: 8em;
+  margin-top: 0.5em;
+}
+
+/* styles.css */
+.login h3 {
+  border: 2px solid black;
+  width: 5vw;
+  padding: 0.8vw;
+  margin-left: 9.3vw;
+  background-color: black;
+  color: white;
+  font-size: 0.8em;
+}
+
+.updatebutton {
+  height: 2em;
+  width: 6em;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.updatebutton:hover {
+  background-color: #0056b3;
+}
+
+.tag {
+  font-size: 0.8em;
+}
+.search-bar {
+  margin-left: 73%;
+}
+.logo-img{
+  width: 20%;
+
+}
+.product-img {
+  margin-top: 5%;
+}
+.product::before { 
+  display: flex;
+  gap: 3em;
+  margin-top: 2em;
+}
+.product::after{
+  display: flex;
+  gap: 0em;
+  margin-top: 2em;
+
+}
+.product-info{
+  margin-left: 13%;
+  margin-top: -8%;
+}
+.pagination {
+  float: right;
+  text-decoration: none;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none; /* Remove underline */
+  transition: background-color .3s;
+  border: 1px solid #ddd;
+}
+.pagination a:not(:last-child) {
+  margin-right: 10px; /* Add space between buttons */
+}
+
+.pagination a.active {
+  background-color: #344282;
+  color: white;
+  border: 1px solid #344282;
+  text-decoration: none;
+  margin-left: -12%;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+/* media query start */
+@media (max-width: 1200px){
+  .logout {
+    height: 8vw;
+    width: 15vw;
+    background: #ccd5e1;
+    font-size: 0.9em;
+    margin-right: 0vw;
+    margin-left: 85%;
+    margin-top: 0%;
+    margin-bottom: -21px;
+  }
+}
+@media (max-width: 780px){
+
+.search-bar {
+  margin-left: 73%;
+}
+.logo-img {
+  width: 33%;
+}
+#search-product {
+  height: 2em;
+  width: 20vw;
+  margin-left: -55%;
+}
+.logout {
+  height: 8vw;
+  width: 15vw;
+  background: #ccd5e1;
+  font-size: 0.9em;
+  margin-right: 0vw;
+  margin-left: -42%;
+  margin-top: 0%;
+  margin-bottom: -93px;
+}
+.p-1 {
+  color: white;
+  margin-top: 4%;
+}
+.product-img img {
+  height: 20vh;
+  width: 27vw;
+  transition: transform 0.3s ease-in-out;
+  margin-left: 31%;
+}
+.product-info {
+  margin-left: 13%;
+  margin-top: -3%;
+}
+.price-list {
+  display: flex;
+  gap: 2em;
+  margin-left: -13%;
+}
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin-left: -10%;
+}
+
+input.new-price {
+  width: 83%;
+  margin-top: 4%;
+}
+.product-img {
+  width: 100%;
+  margin-top: 6%;
+}
+}
