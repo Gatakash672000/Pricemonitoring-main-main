@@ -188,17 +188,15 @@ nav {
 .pagination a:hover:not(.active) {background-color: #ddd;}
 
 /* media query start */
-@media (max-width: 1200px){
-  .logout {
-    height: 8vw;
-    width: 15vw;
-    background: #ccd5e1;
-    font-size: 0.9em;
-    margin-right: 0vw;
-    margin-left: 85%;
-    margin-top: 0%;
-    margin-bottom: -21px;
-  }
+@media (max-width: 667px){
+  .pagination a.active {
+    background-color: #344282;
+    color: white;
+    border: 1px solid #344282;
+    text-decoration: none;
+    margin-left: -4%;
+}
+
 }
 @media (max-width: 780px){
 
@@ -257,4 +255,19 @@ input.new-price {
   width: 100%;
   margin-top: 6%;
 }
+.h1 {
+  font-size: 36px;
+}
+}
+@media (max-width: 1200px){
+  .logout {
+    height: 8vw;
+    width: 15vw;
+    background: #ccd5e1;
+    font-size: 0.9em;
+    margin-right: 0vw;
+    margin-left: 85%;
+    margin-top: 0%;
+    margin-bottom: -21px;
+  }
 }
